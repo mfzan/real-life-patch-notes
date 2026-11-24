@@ -30,6 +30,8 @@ def main() -> None:
             "entry line is %d chars, over the %d limit"
             % (len(ENTRY_LINE), MAX_CHARS)
         )
+    if "\n" in ENTRY_LINE or "\r" in ENTRY_LINE:
+        raise ValueError("entry must be exactly one line, no line breaks")
     os.makedirs("/output", exist_ok=True)
     with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
         f.write(ENTRY_LINE)
